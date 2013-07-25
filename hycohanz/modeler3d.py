@@ -1398,5 +1398,28 @@ def rename_part(oEditor, oldname, newname):
     renameparamsarray = ["Name:Rename Data", "Old Name:=", oldname, "New Name:=", newname]
     
     return oEditor.RenamePart(renameparamsarray)
+    
+def deleteEndPoint(oEditor, polylinename, index):
+    """
+    Rename a part.
+    
+    Parameters
+    ----------
+    oEditor : pywin32 COMObject
+        The HFSS editor in which the operation will be performed. 
+    polylinename : str
+        The name of the part to rename
+    indes : str
+        position in the array of the point to be deleted
+        
+    Returns
+    -------
+    None
+    
+    """
+    index = index - 1
+    deletepointarray = ["Name:Delete Point", "Selections:=", polylinename+":CreatePolyline:1", "Segment Indices:=", [index], "At Start:=", False]
+    
+    return oEditor.DeletePolylinePoint(deletepointarray)
 
 
